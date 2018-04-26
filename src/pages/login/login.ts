@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { UsuarioProvider } from '../../providers/index.providers';
+import { CarritoPage } from '../index.paginas';
+
+
 
 @Component({
   selector: 'page-login',
@@ -14,11 +12,27 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  activo = false
+  correo: string = "";
+  contrasena: string = "";
+
+  constructor(public _us: UsuarioProvider, public viewCtrl:ViewController,     public modalCtrl: ModalController
+  ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  validarUsuario() {
+    this._us.validarUsuario(this.correo, this.contrasena).subscribe(()=> {
+      
+      if(this._us.activo){
+        this.cerrarDialogo();
+        this.modalCtrl.create(CarritoPage).present();
+      }
+     });
+    
+  }
+
+  cerrarDialogo() {
+    this.viewCtrl.dismiss(false);
   }
 
 }

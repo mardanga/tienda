@@ -19,6 +19,6 @@
     <p>{{producto.descripcion}}</p>
     <p>{{producto.precio_compra | currency:'USD':true}}</p>
 
-    <button ion-button full> <ion-icon name="cart"></ion-icon> Comprar </button>
+    <button ion-button full (click)="agregarCarrito()"> <ion-icon name="cart"></ion-icon> Comprar </button>
     <br/>
 </ion-content>

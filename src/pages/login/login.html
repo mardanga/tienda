@@ -6,13 +6,30 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Login</ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="cerrarDialogo()">
+            Cerrar
+          </button>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text" [(ngModel)]="correo"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="contrasena"></ion-input>
+        </ion-item>
+        <br/>
+        <button ion-button block (click)="validarUsuario()">Ingresar</button>
+    </ion-list>
 
 </ion-content>
