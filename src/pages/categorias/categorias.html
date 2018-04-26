@@ -6,13 +6,18 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>categorias</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Categorias</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+    <ion-list>
+        <button ion-item *ngFor="let item of _ps.lineas" (click)="detalleCategoria(item)">
+          <ion-icon [name]="item.icono"></ion-icon>
+          {{ item.linea }}
+        </button>
+    </ion-list>
 </ion-content>
