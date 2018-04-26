@@ -8,7 +8,7 @@ import { AlertController, Platform } from 'ionic-angular';
 export class CarritoProvider {
 
   items = [];
-
+  totalCompra = 0;
   constructor(public alertCtrl: AlertController, public platform: Platform) {
     
   }
@@ -32,6 +32,7 @@ export class CarritoProvider {
     if(!existe){
       this.items.push(item);
       this.guardarStorage();
+      
     }
   }
 
@@ -43,6 +44,7 @@ export class CarritoProvider {
     {
       localStorage.setItem('carrito', JSON.stringify(this.items));
     }
+    this.totalCompraItems();
   }
 
   cargarStorage() {
@@ -55,6 +57,15 @@ export class CarritoProvider {
         this.items = JSON.parse(localStorage.getItem('carrito'));
       }
     }
+    this.totalCompraItems();
+  }
+
+  private totalCompraItems() {
+    this.items.forEach(element => {
+      this.totalCompra += parseFloat(element.precio_compra);
+      
+    });
+
   }
 
 }

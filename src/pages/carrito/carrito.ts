@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { CarritoProvider } from '../../providers/index.providers';
 
 /**
  * Generated class for the CarritoPage page.
@@ -14,11 +15,11 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class CarritoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public _cs: CarritoProvider, public viewCtrl: ViewController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CarritoPage');
+  cerrarCarrito() {
+  this.viewCtrl.dismiss();
   }
 
 }
