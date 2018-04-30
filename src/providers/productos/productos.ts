@@ -1,3 +1,4 @@
+import { UsuarioProvider } from './../usuario/usuario';
 import { URL_SERVICIO } from '../../config/url';
 import { Injectable } from '@angular/core';
 
@@ -14,8 +15,9 @@ export class ProductosProvider {
   paginaPorCategoria = 0;
   productosPorCategoria = [];
   private idCategoriaAux = 0;
+  ordenes = [];
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public _us: UsuarioProvider) {
     this.cargarTodos();
     this.cargarLineas();
   }
@@ -81,8 +83,7 @@ export class ProductosProvider {
       this.productosPorCategoria =[];
       this.idCategoriaAux = categoria.id;
     }
-    
-    
+       
     
     let url = URL_SERVICIO + "/productos/por_tipo/" + categoria.id + "/" + this.paginaPorCategoria;
     console.log(this.paginaPorCategoria, url);
@@ -106,4 +107,6 @@ export class ProductosProvider {
     );
     return promesa;
   }
+
+  
 }

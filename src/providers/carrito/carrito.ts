@@ -13,6 +13,8 @@ export class CarritoProvider {
 
   items = [];
   totalCompra = 0;
+  ordenes = [];
+
   constructor(public alertCtrl: AlertController, 
     public platform: Platform,
     
@@ -120,4 +122,35 @@ export class CarritoProvider {
 
   }
 
+  obtenerOrdenes (){
+    let url =  `${URL_SERVICIO}/pedidos/obtener_pedidos/${ this._us.token}/${this._us.idUsuario}` 
+    
+    let promesa = new Promise((resolve, reject)=>{
+      this.http
+      .get(url)
+      .map(resp=> resp.json())
+      .subscribe(data => {
+        if(data.error){
+        }
+        else{
+          this.ordenes = data.ordenes;
+          
+          
+        }
+        resolve();
+      });
+      }
+    );
+    return promesa;
+  }
+  
+  eliminarOrden (idOrden) {
+    let url =  `${URL_SERVICIO}/pedidos/borrar_pedido/${ this._us.token}/${this._us.idUsuario}/${idOrden}` 
+    
+    
+    return  this.http
+      .delete(url)
+      .map(resp=> resp.json());
+    
+  }
 }

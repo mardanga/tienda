@@ -1,3 +1,4 @@
+import { CarritoProvider } from './../../providers/carrito/carrito';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -14,11 +15,28 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class OrdenesDetallePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  orden: any; 
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public _cs: CarritoProvider
+  ) {
+    this.orden = this.navParams.get('orden');
+    
+    
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OrdenesDetallePage');
+  eliminarOrden(idOrden){
+    this._cs.eliminarOrden(idOrden).subscribe(res=> {
+      
+        if(res.error){
+        }
+        else{
+           this.navCtrl.pop(); 
+          
+          
+        }
+    });
   }
+  
 
 }
