@@ -68,8 +68,8 @@ export class UsuarioProvider {
     else
     {
       if(localStorage.getItem('token')){
-        this.token = localStorage.getItem('token');
-        this.idUsuario = localStorage.getItem('idUsuario');
+        this.token = JSON.parse(localStorage.getItem('token'));
+        this.idUsuario = JSON.parse(localStorage.getItem('idUsuario'));
         
         this.activo = true;
       }

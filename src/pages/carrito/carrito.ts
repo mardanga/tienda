@@ -22,4 +22,11 @@ export class CarritoPage {
   this.viewCtrl.dismiss();
   }
 
+  quitarProducto(idx) {
+    this._cs.quitarProducto(idx);
+  }
+
+  enviarOrden() {
+    this._cs.realizarPedido().subscribe();
+  }
 }
